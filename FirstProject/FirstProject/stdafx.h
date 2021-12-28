@@ -75,8 +75,8 @@ UINT64 fenceValue[frameBufferCount]; // this value is incremented each frame. ea
 int frameIndex; // current rtv we are on
 
 int rtvDescriptorSize; // size of the rtv descriptor on the device (all front and back buffers will be the same size)
+                       // function declarations
 
-// function declarations
 bool InitD3D(); // initializes direct3d 12
 
 void Update(); // update the game logic
@@ -88,3 +88,16 @@ void Render(); // execute the command list
 void Cleanup(); // release com ojects and clean up memory
 
 void WaitForPreviousFrame(); // wait until gpu is finished with command list
+
+ID3D12PipelineState* pipelineStateObject; // pso containing a pipeline state
+
+ID3D12RootSignature* rootSignature; // root signature defines data shaders will access
+
+D3D12_VIEWPORT viewport; // area that output from rasterizer will be stretched to.
+
+D3D12_RECT scissorRect; // the area to draw in. pixels outside that area will not be drawn onto
+
+ID3D12Resource* vertexBuffer; // a default buffer in GPU memory that we will load vertex data for our triangle into
+
+D3D12_VERTEX_BUFFER_VIEW vertexBufferView; // a structure containing a pointer to the vertex data in gpu memory
+                                           // the total size of the buffer, and the size of each element (vertex)
